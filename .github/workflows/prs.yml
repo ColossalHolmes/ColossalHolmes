@@ -22,7 +22,7 @@ jobs:
 #       with:
 #         run: curl "https://data-asg.goldprice.org/dbXRates/VND" -o data.json
     - name: Fetch data
-      run: curl "<URL YOU WANT TO CHECK HERE>" -o data.json
+      run: curl "https://data-asg.goldprice.org/dbXRates/VND" -o data.json
 
     - name: Parse data
       id: parse_data
