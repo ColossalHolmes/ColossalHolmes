@@ -16,10 +16,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Webhook
-      id: gold
-      uses: distributhor/workflow-webhook@v2
-      with:
-        webhook_url: "https://data-asg.goldprice.org/dbXRates/VND"
-#         run: echo "steps.gold.url.response"
+#     - name: Fetch API Data 📦
+#       id: gold
+#       uses: JamesIves/fetch-api-data-action@releases/v1
+#       with:
+#         run: curl "https://data-asg.goldprice.org/dbXRates/VND" -o data.json
+    - name: Fetch data
+      run: curl "<URL YOU WANT TO CHECK HERE>" -o data.json
+
+    - name: Parse data
+      id: parse_data
+      run: echo '::set-output name=someField::'$(jq -r '.someField' data.json)
