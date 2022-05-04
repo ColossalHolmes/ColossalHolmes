@@ -36,7 +36,7 @@ jobs:
                 repo,
                 head: '${{ github.ref_name }}',
                 base: 'develop',
-                body: ["${{ needs.lint.outputs.output1 }}"]
+                body: "${{ needs.lint.outputs.output1 }}"
               });
               github.rest.issues.addLabels({
                 owner,
