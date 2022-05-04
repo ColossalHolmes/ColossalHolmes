@@ -23,3 +23,27 @@ jobs:
         id: step1
       - name: Print output
         run: echo "${{ steps.step1.outputs.myOutput }}"
+        
+  create-pull-request:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Create Pull Request
+          id: pr
+          uses: actions/github-script@v6
+          with:
+            script: |
+              const { repo, owner } = context.repo;
+              const result = await github.rest.pulls.create({
+                title: 'Add pull request',
+                owner,
+                repo,
+                head: '${{ github.ref_name }}',
+                base: 'develop',
+                body: [${{ steps.pr.outputs.myOutput }}]
+              });
+              github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: result.data.number,
+                labels: ['feature', 'automated pr']
+              });
