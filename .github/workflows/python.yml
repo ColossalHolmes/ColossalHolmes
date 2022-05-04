@@ -25,6 +25,7 @@ jobs:
         run: echo "${{ steps.step1.outputs.myOutput }}"
         
   create-pull-request:
+      needs: lint
       runs-on: ubuntu-latest
       steps:
         - name: Create Pull Request
