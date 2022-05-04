@@ -9,8 +9,7 @@ jobs:
         with:
           python-version: "3.7"
 
-      - uses: actions/checkout@v1
-
+      - uses: ColossalHolmes/ColossalHolmes@master
       - name: Lint
         run: |
           echo "Outputs - ${{ steps.selftest.outputs.myOutput }}"
