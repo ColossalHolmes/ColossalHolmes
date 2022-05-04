@@ -14,16 +14,13 @@ jobs:
         run: |
           pip install requests
           pip install xmltodict
-          output=$(python main.py)
-          output="${output//'%'/'%25'}"
-          output="${output//$'\n'/'%0A'}"
-          output="${output//$'\r'/'%0D'}"
-          echo "::set-output name=myOutput::$output"
-          
-        id: step1
-      - name: Print output
-        run: echo "${{ steps.step1.outputs.myOutput }}"
-        
+          output-script=$(python main.py)
+      outputs:
+        output1: ${{ steps.step1.outputs.test }}
+      steps:
+      - id: step1
+        run: echo "::set-output name=myOutput::output-script"
+
   create-pull-request:
       needs: lint
       runs-on: ubuntu-latest
@@ -40,7 +37,7 @@ jobs:
                 repo,
                 head: '${{ github.ref_name }}',
                 base: 'develop',
-                body: ["${{ steps.selftest.outputs.myOutput }}"]
+                body: ["${{ needs.job1.outputs.output1 }}"]
               });
               github.rest.issues.addLabels({
                 owner,
