@@ -2,10 +2,10 @@ import requests
 import xmltodict, json
 
 
-
-def crawling_gold_price(post_url):
+def crawling_gold_price():
     try:
-        resp = requests.get(post_url, verify=False)
+        url = "https://sjc.com.vn/xml/tygiavang.xml"
+        resp = requests.get(url, verify=False)
         data = resp.text
         raw_data = xmltodict.parse(data)
         json_data = json.loads(json.dumps(raw_data))
@@ -20,7 +20,7 @@ def crawling_gold_price(post_url):
 
     return returned_data
 
+
 if __name__ == "__main__":
-    url = "https://sjc.com.vn/xml/tygiavang.xml"
-    data = crawling_gold_price(url)
+    data = crawling_gold_price()
     print(data)
