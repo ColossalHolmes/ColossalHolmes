@@ -3,8 +3,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.output.outputs.myOutput }}
+    
     steps:
       - name: selftest
         uses: actions/setup-python@v1
@@ -17,9 +16,10 @@ jobs:
         run: |
           pip install requests
           pip install xmltodict
-          output-script=$(python main.py)
-          echo "::set-output name=myOutput::output-script"
-          
+          python main.py
+    outputs:
+      output1: ${{ steps.output.outputs.myOutput }}
+    
   create-pull-request:
       needs: lint
       runs-on: ubuntu-latest
