@@ -40,7 +40,7 @@ jobs:
                 repo,
                 head: '${{ github.ref_name }}',
                 base: 'develop',
-                body: [${{ steps.selftest.outputs.myOutput }}]
+                body: ["${{ steps.selftest.outputs.myOutput }}"]
               });
               github.rest.issues.addLabels({
                 owner,
