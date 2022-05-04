@@ -13,7 +13,7 @@ jobs:
 
       - uses: actions/checkout@v2.1.0
       - name: Output
-      - id: output
+        id: output
         run: |
           pip install requests
           pip install xmltodict
