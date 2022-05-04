@@ -2,7 +2,7 @@ import requests
 import xmltodict, json
 
 
-def crawling_gold_price():
+def main():
     try:
         url = "https://sjc.com.vn/xml/tygiavang.xml"
         resp = requests.get(url, verify=False)
@@ -16,11 +16,10 @@ def crawling_gold_price():
             "sell_price": json_data['root']['ratelist']['city'][0]['item'][0]['@sell']
         }
     except:
-        raise AttributeError
+        pass
 
-    return returned_data
+    print(f"::set-output name=myOutput::{returned_data}")
 
 
 if __name__ == "__main__":
-    data = crawling_gold_price()
-    print(data)
+    main()
