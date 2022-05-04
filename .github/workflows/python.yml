@@ -19,3 +19,7 @@ jobs:
           output="${output//$'\n'/'%0A'}"
           output="${output//$'\r'/'%0D'}"
           echo "::set-output name=myOutput::$output"
+          
+        id: step1
+      - name: Print output
+        run: echo "${{ steps.step1.outputs.myOutput }}"
