@@ -28,6 +28,7 @@ jobs:
           id: pr
           uses: actions/github-script@v6
           with:
+            pull_request_token: ${{ secrets.PULL_REQUEST_TOKEN }}
             script: |
               const { repo, owner } = context.repo;
               const result = await github.rest.pulls.create({
@@ -35,7 +36,7 @@ jobs:
                 owner,
                 repo,
                 head: '${{ github.ref_name }}',
-                base: 'develop',
+                base: 'main',
                 body: "${{ needs.lint.outputs.output1 }}"
               });
               github.rest.issues.addLabels({
