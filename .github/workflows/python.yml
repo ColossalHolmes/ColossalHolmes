@@ -15,11 +15,11 @@ jobs:
           pip install requests
           pip install xmltodict
           output-script=$(python main.py)
-      outputs:
-        output1: ${{ steps.step1.outputs.test }}
-      steps:
-      - id: step1
-        run: echo "::set-output name=myOutput::output-script"
+          outputs:
+            output1: ${{ steps.step1.outputs.test }}
+          steps:
+          - id: step1
+            run: echo "::set-output name=myOutput::output-script"
 
   create-pull-request:
       needs: lint
