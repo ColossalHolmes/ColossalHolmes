@@ -1,10 +1,11 @@
 import requests
 import xmltodict, json
-
+import urllib3
 
 def main():
     try:
         url = "https://sjc.com.vn/xml/tygiavang.xml"
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         resp = requests.get(url, verify=False)
         data = resp.text
         raw_data = xmltodict.parse(data)
