@@ -9,7 +9,11 @@ jobs:
         with:
           python-version: "3.7"
 
+      - name: Install
+        run: |
+          pip install xmltodict
+          
       - uses: ColossalHolmes/ColossalHolmes@main
-      - name: Lint
+      - name: Output
         run: |
           echo "Outputs - ${{ steps.selftest.outputs.myOutput }}"
