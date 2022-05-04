@@ -24,6 +24,8 @@ jobs:
       needs: lint
       runs-on: ubuntu-latest
       steps:
+        - name: unique id
+          run: echo title=Add pull request $(date +%s) >> $GITHUB_ENV
         - name: Create Pull Request
           id: pr
           uses: actions/github-script@v6
@@ -32,7 +34,7 @@ jobs:
             script: |
               const { repo, owner } = context.repo;
               const result = await github.rest.pulls.create({
-                title: 'Add pull request $(date +%s)',
+                title: ${{ env.title }},
                 owner,
                 repo,
                 head: '${{ github.ref_name }}',
