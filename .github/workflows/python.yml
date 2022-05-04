@@ -8,10 +8,6 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: "3.7"
-
-      - name: Install
-        run: |
-          pip install xmltodict
           
       - uses: ColossalHolmes/ColossalHolmes@main
       - name: Output
