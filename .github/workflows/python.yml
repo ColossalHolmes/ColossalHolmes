@@ -1,4 +1,4 @@
-on: pull_request
+on: push
 jobs:
   lint:
     name: Lint
@@ -36,7 +36,7 @@ jobs:
                 owner,
                 repo,
                 head: '${{ github.ref_name }}',
-                base: 'develop',
+                base: 'main',
                 body: "${{ needs.lint.outputs.output1 }}"
               });
               github.rest.issues.addLabels({
