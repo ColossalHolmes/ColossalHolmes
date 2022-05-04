@@ -19,7 +19,7 @@ def main():
         output_string = " Gia {0} ngay {1}: Mua vao {2} - Ban ra {3}".format(returned_data['gold_type'], returned_data['date'], returned_data['buy_price'], returned_data['sell_price'])
     except:
         pass
-
+    print("hohohoho")
     print(f"::set-output name=myOutput::{output_string}")
 
 
