@@ -32,7 +32,7 @@ jobs:
             script: |
               const { repo, owner } = context.repo;
               const result = await github.rest.pulls.create({
-                title: 'Add pull request',
+                title: 'Add pull request $(date +%s)',
                 owner,
                 repo,
                 head: '${{ github.ref_name }}',
