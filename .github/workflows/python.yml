@@ -3,6 +3,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.output.outputs.myOutput }}
     steps:
       - name: selftest
         uses: actions/setup-python@v1
@@ -11,16 +13,13 @@ jobs:
 
       - uses: actions/checkout@v2.1.0
       - name: Output
+      - id: output
         run: |
           pip install requests
           pip install xmltodict
           output-script=$(python main.py)
-          outputs:
-            output1: ${{ steps.step1.outputs.test }}
-          steps:
-          - id: step1
-            run: echo "::set-output name=myOutput::output-script"
-
+          echo "::set-output name=myOutput::output-script"
+          
   create-pull-request:
       needs: lint
       runs-on: ubuntu-latest
@@ -37,7 +36,7 @@ jobs:
                 repo,
                 head: '${{ github.ref_name }}',
                 base: 'develop',
-                body: ["${{ needs.job1.outputs.output1 }}"]
+                body: ["${{ needs.lint.outputs.output1 }}"]
               });
               github.rest.issues.addLabels({
                 owner,
