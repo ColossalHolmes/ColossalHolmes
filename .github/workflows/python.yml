@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v2.1.0
       - name: Output
         run: |
+          pip install requests
+          pip install xmltodict
           output=$(python main.py)
           output="${output//'%'/'%25'}"
           output="${output//$'\n'/'%0A'}"
