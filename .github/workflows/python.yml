@@ -22,6 +22,7 @@ jobs:
     
   create-pull-request:
       needs: lint
+      if: github.ref_name == 'develop'
       runs-on: ubuntu-latest
       steps:
         - name: unique id
