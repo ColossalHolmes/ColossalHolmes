@@ -1,0 +1,20 @@
+Dockerfile template for cleaning intermediate:
+    
+    # start of docker file    
+    FROM scratch as builder
+    LABEL stage=builder-stage
+    # Rest of this layer code
+
+    FROM scratch as builder
+    LABEL stage=buildter-stage
+    # Rest of this layer
+
+    ...
+    FROM scratch
+    COPY ...
+    ....
+
+    #end of Dockerfile
+
+In terminal after successfully build run command
+    > docker image prune --filter lable=stage=builder-stage
