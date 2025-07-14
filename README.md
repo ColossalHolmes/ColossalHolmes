@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @ColossalHolmes
 - 👀 I’m interested in coding and reading novels.
-- 🌱 I’m currently learning programming web projects.
+- 🌱 I’m currently learning fullstack.
 - 📫 How to reach me on facebook - /Colossal421997/
 
 <!---
